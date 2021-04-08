@@ -9,7 +9,6 @@ const Principal = () =>{
     return (
         <>
             <h1> {titulo} </h1>
-            <FC></FC>
             <FCC></FCC>
             <br/>
            

@@ -11,8 +11,8 @@ const FCC= ()=>{
     return (
         <div>
             <h2> {ejemplo.titulo} </h2>
-            <p>{ejemplo.pasos[0].paso}</p>
             <hr/>
+            <p>{ejemplo.pasos[0].paso}</p>
             <p> Ejemplo:</p>
             <MathComponent tex={ejemplo.pasos[0].expresion}/>
             <p>Solución: </p> 
@@ -33,7 +33,6 @@ const FCC= ()=>{
             <p>Solución: </p> 
             <MathComponent tex={ejemplo.pasos[2].result_final[0]+ejemplo.pasos[2].result_final[1]}/>
             <hr/>
-
 
             <h2> {ejercicio.titulo} </h2>
             <p>{ejercicio.pasos[0].explicacion}</p>
