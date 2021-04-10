@@ -6,8 +6,8 @@ import {MathComponent} from 'mathjax-react';
 
 //react functional component
 const FCC= ()=>{
-    const ejemplo = Ejercicio1;
-    const ejercicio = Ejercicio2;
+    const ejemplo = Ejercicio2;
+    const ejercicio = Ejercicio1;
     return (
         <div>
             <h2> {ejemplo.titulo} </h2>
@@ -16,8 +16,7 @@ const FCC= ()=>{
             <p> Ejemplo:</p>
             <MathComponent tex={ejemplo.pasos[0].expresion}/>
             <p>Solución: </p> 
-            <MathComponent tex={ejemplo.pasos[0].result_final[0]}/>
-            <MathComponent tex={ejemplo.pasos[0].result_final[1]}/>
+            <MathComponent tex={"("+ejemplo.pasos[0].result_final[0]+")+("+ejemplo.pasos[0].result_final[1]+")"}/>
             <hr/>
 
             <p>{ejemplo.pasos[1].paso}</p>
@@ -44,7 +43,7 @@ const FCC= ()=>{
                     type="text" 
                     name="name"
                     className="form-control"
-                    placeholder="Ingrese factor común"
+                    placeholder="Agrupe los sumandos"
                     autoComplete= "off"
                 ></input>
 

@@ -21,8 +21,8 @@ const FC= ()=>{
             <MathComponent tex={"("+result_final[0]+")("+result_final[1]+")"}/>
             <p> donde {result_final[0]} es el factor común </p>
             <hr/>
+            
             <p>{ejercicio.enunciado}</p>
-
             <MathComponent tex={String.raw`${ejercicio.expresion}`} />
 
             <div className="input-group">
