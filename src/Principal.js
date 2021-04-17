@@ -3,6 +3,8 @@ import React from 'react';
 import FC from './factorComun/FactorComun';
 import FCC from './factorComunCompuesto/FactorComunCompuesto';
 import DC from './diferenciaCuadrados/DiferenciaCuadrados';
+import DSC from './diferenciaSumaCubos/DiferenciaSumaCubos';
+import TC from './trinomiosCuadraticos/TrinomiosCuadraticos';
 
 const Principal = () =>{
 
@@ -10,7 +12,7 @@ const Principal = () =>{
     return (
         <>
             <h1> {titulo} </h1>
-            <DC></DC>
+            <FC></FC>
             <br/>
            
         </>

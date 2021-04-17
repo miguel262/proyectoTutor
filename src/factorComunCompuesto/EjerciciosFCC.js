@@ -3,6 +3,7 @@ export const Ejercicio1 = {
     titulo : "Factorización por factor común compuesto.",
     pasos: [
         {
+            id:"0",
             expresion: "ax + bx + ay + by",
             paso: "Paso 1: agrupe los sumandos",
             explicacion:"agrupar los sumandos según los términos en común",

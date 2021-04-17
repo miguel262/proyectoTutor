@@ -1,15 +1,18 @@
 import React from 'react';
-import {Ejercicio1, Ejercicio3} from './EjerciciosFC';
+import {Ejercicio1, Ejercicio2} from './EjerciciosFC';
 import {MathComponent} from 'mathjax-react';
 import './FactorComun.css';
+import EjerFC from './componentes/FCpaso1';
 
 
 //react functional component
 const FC= ()=>{
 
     const ejemplo = Ejercicio1;
-    const ejercicio=Ejercicio3;
+    const ejercicio=Ejercicio2;
     const {result_final} = ejemplo;
+
+
     return (
         <div>
             <h2> {ejemplo.titulo} </h2>
@@ -22,25 +25,7 @@ const FC= ()=>{
             <p> donde {result_final[0]} es el factor común </p>
             <hr/>
             
-            <p>{ejercicio.enunciado}</p>
-            <MathComponent tex={String.raw`${ejercicio.expresion}`} />
-
-            <div className="input-group">
-                <input
-                    type="text" 
-                    name="name"
-                    className="form-control"
-                    placeholder="Ingrese factor común"
-                    autoComplete= "off"
-                ></input>
-
-                <button 
-                    type="submit" 
-                    className="btn btn-outline-success">
-                    Aceptar
-                </button>    
-            </div>
-            <hr/>
+            <EjerFC ejercicio={ejercicio}></EjerFC>
         </div>
     )
 }
