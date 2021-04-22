@@ -21,7 +21,7 @@ export const Ejercicio2 = {
     explicacion:"En este caso todos los términos de la expresión algebraica presentan un factor común, la tarea es encontrar dicho factor común para luego factorizar",
     result_variable:["5","5x","5*x","5x^2","5*x^2","...","5/3*y",".."],
     hint_result_var:"Aún la ecuación es factorizable, añada otro factor común",
-    result_final:["(5x^2)/(3y)","x^4/y - 2/7 -(4x)/(3y^3)"],
+    result_final:"( \\frac{5x^2}{3y} )( \\frac{x^4}{y} - \\frac{2}{7} - \\frac{4x}{3y^3} )",
     hint_solicitado:["asfsafas","el factor común de la expresión es 3xy"],
     entrada:["(5x^2)/(3y)" ,"5x^2/(3y)"],
     error:"factor común incorrecto, ingrese el factor común correspondiente a la expresión dada",
