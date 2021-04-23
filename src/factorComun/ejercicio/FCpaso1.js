@@ -9,13 +9,14 @@ const FCpaso1 = props => {
     const [estado,setEstado] = useState(null);
     //resultado correcto (hay que validar para todas las entradas posibles)
     const correcta = props.ejercicio.entrada;
+    const variable = props.ejercicio.result_variable;
     console.log(correcta);
 
     //esta función se ejecuta cuando se oprime el boton aceptar 
     const comparar=()=>{
-        //parametro de entrada recibido
-        const entrada = respuesta.current.value.trim();
-
+        //parametro de entrada recibido, replace elimina "espacios" y "*", falta trabajar todo en minuscula
+        const entrada = respuesta.current.value.replace(/[*]| /g, "");
+        
         //El método some() comprueba si al menos un elemento del array 
         //cumple con la condición implementada por la función proporcionada.
         const valida = (element) => element == entrada;
@@ -30,12 +31,23 @@ const FCpaso1 = props => {
             );
         }
         else{
-            setEstado(
-                //error cuando la entrada es incorrecta
-                <div className="alert alert-danger"> 
-                    <p>{props.ejercicio.error}</p> 
-                </div>
-            );
+            //busca si es un resultado variable
+            if (variable.some(valida)) {
+                //valida que la entrada es correcta
+                setEstado(
+                    <div className="alert alert-warning"> 
+                        <p>{props.ejercicio.hint_result_var}</p>
+                    </div>
+                );
+            }
+            else{
+                setEstado(
+                    //error cuando la entrada es incorrecta
+                    <div className="alert alert-danger"> 
+                        <p>{props.ejercicio.error}</p> 
+                    </div>
+                );
+            }
         }
     };
 

@@ -6,8 +6,8 @@ export const Ejercicio1 = {
     explicacion:"En este caso todos los términos de la expresión algebraica presentan un factor común, la tarea es encontrar dicho factor común para luego factorizar.",
     result_variable:["3","x","y","3x","3y","xy"],
     hint_result_var:"Aún la ecuación es factorizable, añada otro factor común",
-    result_final:["3xy","2y-5x+7xy"],
-    hint_solicitado:["el factor común de la expresión es 3xy"],
+    result_final:"(3xy)(2y-5x+7xy)",
+    hint_solicitado:["un factor común de esta ecuación es 3, pero la ecuación todavía es factorizable","otro factor común es 3x, pero todavía se puede agregar otro valor al factor común","el factor común de la expresión es 3xy"],
     entrada:["3xy","3yx"],
     error:"factor común incorrecto, ingrese el factor común correspondiente a la expresión dada",
     validacion:"Haz encontrado el factor común"
@@ -22,7 +22,7 @@ export const Ejercicio2 = {
     result_variable:["5","5x","5*x","5x^2","5*x^2","...","5/3*y",".."],
     hint_result_var:"Aún la ecuación es factorizable, añada otro factor común",
     result_final:"( \\frac{5x^2}{3y} )( \\frac{x^4}{y} - \\frac{2}{7} - \\frac{4x}{3y^3} )",
-    hint_solicitado:["asfsafas","el factor común de la expresión es 3xy"],
+    hint_solicitado:["hint 1","el factor común de la expresión es 3xy"],
     entrada:["(5x^2)/(3y)" ,"5x^2/(3y)"],
     error:"factor común incorrecto, ingrese el factor común correspondiente a la expresión dada",
     validacion:"Haz encontrado el factor común"
