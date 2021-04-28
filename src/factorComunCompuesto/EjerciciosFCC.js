@@ -1,6 +1,8 @@
 export const Ejercicio1 = {
     prob_id : 2000,
     titulo : "Factorización por factor común compuesto.",
+    dificultad:"3",
+    //enunciado
     pasos: [
         {
             id:"0",
@@ -17,6 +19,7 @@ export const Ejercicio1 = {
             validacion:"Haz agrupado los sumandos"
         },
         {
+            id:"1",
             expresion: "(ax + ay) + (bx + by)",
             paso: "Paso 2: ingrese el factor común de cada grupo",
             explicacion:"a cada uno de los grupos de sumandos ingrese su factor común",
@@ -29,6 +32,7 @@ export const Ejercicio1 = {
             validacion:"Haz encontrado el factor común"
         },      
         {
+            id:"2",
             expresion: "a(x+y)+b(x+y)",
             paso: "Paso 3: ingrese el factor común",
             explicacion:"En este caso todos los términos de la expresión algebraica presentan un factor común, la tarea es encontrar dicho factor común para luego factorizar",

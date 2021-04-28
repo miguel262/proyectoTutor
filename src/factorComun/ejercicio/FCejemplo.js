@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {MathComponent} from 'mathjax-react';
 
 const FCejemplo = props => {

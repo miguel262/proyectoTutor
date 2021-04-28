@@ -14,11 +14,10 @@ la idea es definir un enlace que diga para este usuario cargue este ejercicio es
 */
 const Principal = () =>{
 
-    const titulo = "Tutor cognitivo de matemáticas";
+
     return (
         <>
-            <h1> {titulo} </h1>
-            <FC></FC>
+            <FCC></FCC>
             <br/>
            
         </>

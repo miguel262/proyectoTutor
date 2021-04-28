@@ -1,3 +1,4 @@
+import { Alert } from 'react-bootstrap';
 import React, {useState } from 'react';
 
 const Hint = props => {
@@ -11,25 +12,28 @@ const Hint = props => {
             setI(i+1);
         }
         setE(
-            <div className="alert alert-info"> 
+            <Alert variant="info">
                 <p>{props.ayuda[i]}</p>
-            </div>
+            </Alert> 
         )
         console.log(i);
-        var incognita = "(3 * x) / ( 4 * y )";
-        var c='*';
-        console.log(incognita.replace(/[*]| /g, ""));
+        //var incognita = "(3 * x) / ( 4 * y )";
+        //var c='*';
+        //console.log(incognita.replace(/[*]| /g, ""));
     }
 
     return(
         <div>
-            <button 
-                type="submit" 
-                className="btn btn-outline-info"
-                onClick={ayuda}
-            >
-                Hint
-            </button>
+            <p>
+                <button 
+                    type="submit" 
+                    className="btn btn-outline-info"
+                    onClick={ayuda}
+                >
+                    Hint
+                </button>
+                &nbsp; Ayuda con costo de penalización
+            </p>
             {e}
         </div>
     );
