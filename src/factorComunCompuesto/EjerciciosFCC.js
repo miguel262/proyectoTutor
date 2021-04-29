@@ -2,6 +2,7 @@ export const Ejercicio1 = {
     prob_id : 2000,
     titulo : "Factorización por factor común compuesto.",
     dificultad:"3",
+    textoProblema: "Texto problema/ejercicio, planteamiento",
     //enunciado
     pasos: [
         {
@@ -9,12 +10,17 @@ export const Ejercicio1 = {
             expresion: "ax + bx + ay + by",
             paso: "Paso 1: agrupe los sumandos",
             explicacion:"agrupar los sumandos según los términos en común",
-            grupos:"2",
-            hint_grupos:["No es la cantidad de grupos adecuada","La cantidad de grupos de este ejercicio es 2"],
-            result_final:["ax + ay","bx + by"],
+            result_final:"(ax + ay)+(bx + by)",
             hint_solicitado:["agrupa los sumandos con términos que se repiten (comenzar con los primeros términos de los sumandos)",
             "agrupa los sumandos con constantes iguales","los grupos son: (ax + ay) + (bx + by)"],
-            entrada:[["ax+ay","bx+by"],["ax+bx","ay+by"]],
+            soluciones:[{entrada:["ax+ay","bx+by"],pasoSiguiente:"1"},
+                        {entrada:["ay+ax","bx+by"],pasoSiguiente:"1"},
+                        {entrada:["ax+ay","by+bx"],pasoSiguiente:"1"},
+                        {entrada:["ay+ax","by+bx"],pasoSiguiente:"1"},
+                        {entrada:["ax+bx","ay+by"],pasoSiguiente:"2"},
+                        {entrada:["bx+ax","ay+by"],pasoSiguiente:"2"},
+                        {entrada:["ax+bx","by+ay"],pasoSiguiente:"2"},
+                        {entrada:["bx+ax","by+ay"],pasoSiguiente:"2"}],
             error:"no se ha agrupado correctamente la expresión",
             validacion:"Haz agrupado los sumandos"
         },

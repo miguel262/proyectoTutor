@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import {MathComponent} from 'mathjax-react';
-import { Col, Container, Row,Alert } from 'react-bootstrap';
+import { Col, Row,Alert } from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 
 const FCpaso1 = props => {

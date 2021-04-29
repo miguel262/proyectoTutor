@@ -1,37 +1,48 @@
 import React from 'react';
 import {Ejercicio1, Ejercicio2} from './EjerciciosFCC';
 import {MathComponent} from 'mathjax-react';
-import FCCejemplo from './ejercicio/FCCejemplo';
+import { Breadcrumb, Accordion,Card } from 'react-bootstrap';
+import FCCpaso1 from './ejercicio/FCCpaso1';
+//import FCCejemplo from './ejercicio/FCCejemplo';
 
-
-//react functional component
 const FCC= ()=>{
-    const ejemplo = Ejercicio2;
+    //const ejemplo = Ejercicio1;
     const ejercicio = Ejercicio1;
     return (
         <div>
-            <FCCejemplo ejemplo={ejemplo}></FCCejemplo>
+            {//<FCCejemplo ejemplo={ejemplo}></FCCejemplo>
+            }
 
-            <h2> {ejercicio.titulo} </h2>
-            <p>{ejercicio.pasos[0].explicacion}</p>
-            <p>{ejercicio.pasos[0].paso}</p>
-            <MathComponent tex={String.raw`${ejercicio.pasos[0].expresion}`} />
+            <Breadcrumb>
+                <Breadcrumb.Item style={{color: "hotpink"}}>Factorización</Breadcrumb.Item>
+                <Breadcrumb.Item active>Factor común compuesto</Breadcrumb.Item>
+            </Breadcrumb>
 
-            <div className="input-group">
-                <input
-                    type="text" 
-                    name="name"
-                    className="form-control"
-                    placeholder="Agrupe los sumandos"
-                    autoComplete= "off"
-                ></input>
+            <h3>{ejercicio.textoProblema}</h3>
+            <MathComponent tex={ejercicio.pasos[0].expresion} display={true} />
 
-                <button 
-                    type="submit" 
-                    className="btn btn-outline-success">
-                    Aceptar
-                </button>    
-            </div>
+            <Accordion defaultActiveKey="0">
+                <Card bg="secondary" style={{padding: 0}}>
+                    <Accordion.Toggle as={Card.Header} eventKey="0">
+                        {ejercicio.pasos[0].paso}
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey="0" style={{padding: 1}}>
+                    <Card.Body style={{padding: 0}}>
+                        <FCCpaso1 ejercicio={ejercicio}></FCCpaso1>
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+                <Card bg="secondary" style={{padding: 0}}>
+                    <Accordion.Toggle as={Card.Header} eventKey="1">
+                        {ejercicio.pasos[1].paso}
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey="1" style={{padding: 1}}>
+                    <Card.Body style={{padding: 0}}>
+                        <p>aqui va el contenido del paso 2</p>
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+            </Accordion>
         </div>
     )
 }
