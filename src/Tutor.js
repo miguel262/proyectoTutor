@@ -17,7 +17,7 @@ const Principal = () =>{
 
     return (
         <>
-            <FCC></FCC>
+            <DC></DC>
             <br/>
            
         </>

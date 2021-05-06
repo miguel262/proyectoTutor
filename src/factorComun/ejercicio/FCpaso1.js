@@ -3,15 +3,15 @@ import {MathComponent} from 'mathjax-react';
 import { Col, Row,Alert } from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 
-const FCpaso1 = props => {
+const FCpaso1 = ({ejercicio}) => {
     
     //hook para obtener un input
     const respuesta = useRef(null);
     //hook para volver a renderizar cuando el estudiante ingrese una respuesta 
     const [estado,setEstado] = useState(null);
     //resultado correcto (hay que validar para todas las entradas posibles)
-    const correcta = props.ejercicio.entrada;
-    const variable = props.ejercicio.result_variable;
+    const correcta = ejercicio.entrada;
+    const variable = ejercicio.result_variable;
     console.log(correcta);
 
     //esta función se ejecuta cuando se oprime el boton aceptar 
@@ -27,13 +27,13 @@ const FCpaso1 = props => {
             //valida que la entrada es correcta
             setEstado(
                 <div className="alert alert-success"> 
-                    <p>{props.ejercicio.validacion}:&nbsp;
-                    <MathComponent tex={props.ejercicio.entrada[0]}  display={false}/>
+                    <p>{ejercicio.validacion}:&nbsp;
+                    <MathComponent tex={ejercicio.entrada[0]}  display={false}/>
                     </p>
                     <p>
                     Entonces la factorización queda de la forma:
                     &nbsp;
-                    <MathComponent tex={props.ejercicio.result_final}  display={false}/>
+                    <MathComponent tex={ejercicio.result_final}  display={false}/>
                     </p>
                 </div>
             );
@@ -44,7 +44,7 @@ const FCpaso1 = props => {
                 //valida que la entrada es correcta
                 setEstado(
                     <div className="alert alert-warning"> 
-                        <p>{props.ejercicio.hint_result_var}</p>
+                        <p>{ejercicio.hint_result_var}</p>
                     </div>
                 );
             }
@@ -52,7 +52,7 @@ const FCpaso1 = props => {
                 setEstado(
                     //error cuando la entrada es incorrecta
                     <Alert variant="danger">
-                        <p>{props.ejercicio.error}</p> 
+                        <p>{ejercicio.error}</p> 
                     </Alert>
                 );
             }
@@ -62,9 +62,9 @@ const FCpaso1 = props => {
     return (
         <>
             
-            <Row  style={{color: "hotpink", padding: 0}}>
+            <Row  style={{ padding: 0}}>
                 <Col md="12" xl="3" style={{padding: 26.5}}>    
-                    <MathComponent tex={String.raw`${props.ejercicio.expresion}`}  display={false}/>
+                    <MathComponent tex={String.raw`${ejercicio.expresion}`}  display={false}/>
                 </Col>
                 <Col md="5" xl="4" style={{padding: 0}}> 
                     <div className="input-group">
@@ -86,7 +86,7 @@ const FCpaso1 = props => {
                       </div>        
                 </Col>
                 <Col md = "7" xl="5" style={{padding: 0}}> 
-                    <Hint ayuda={props.ejercicio.hint_solicitado}></Hint>
+                    <Hint ayuda={ejercicio.hint_solicitado}></Hint>
                 </Col> 
                 {estado}
             </Row>  

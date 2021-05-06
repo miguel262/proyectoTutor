@@ -20,7 +20,7 @@ const FC= ()=>{
             //<FCejemplo ejemplo={ejemplo}></FCejemplo>
             }
             <Breadcrumb>
-                <Breadcrumb.Item style={{color: "hotpink"}}>Factorización</Breadcrumb.Item>
+                <Breadcrumb.Item style={{color: "red"}}>Factorización</Breadcrumb.Item>
                 <Breadcrumb.Item active>Factor común</Breadcrumb.Item>
             </Breadcrumb>
 

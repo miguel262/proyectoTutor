@@ -1,34 +1,21 @@
-import React, { useRef, useState } from 'react';
-import {MathComponent} from 'mathjax-react';
-import {Col, Row,Alert } from 'react-bootstrap';
+import React, {useRef,useState} from 'react'
 import Hint from '../../herramientas/Hint';
+import {Col, Row,Alert } from 'react-bootstrap';
+import {MathComponent} from 'mathjax-react';
 
-const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
+export const DCpaso2 = ({ejercicio}) => {
     const respuesta1 = useRef(null);
     const respuesta2 = useRef(null);
-    const [estado,setEstado] = useState(null);
-    let idPasoSiguiente = null;
-    const correctas = ejercicio.soluciones.map((elemento)=>elemento.entrada);
-
-
-
+    const correcta = ejercicio.entrada;
+    const [estado, setEstado] = useState(null)
     const comparar=()=>{
-        //parametro de entrada recibido, replace elimina "espacios" y "*", trabajar todo en minuscula
         const entrada = [respuesta1.current.value.replace(/[*]| /g, "").toLowerCase(),respuesta2.current.value.replace(/[*]| /g, "").toLowerCase()];
-    
-        
-        //valida que la entrada es correctas
-        const valida = (element) =>((element[0] === entrada[0]) && (element[1] === entrada[1])) || ((element[0] === entrada[1]) && (element[1] === entrada[0]));
-        //El método some() comprueba si al menos un elemento del array 
-        //cumple con la condición implementada por la función proporcionada.
-        if (correctas.some(valida)) {
-            setIdSiguientePaso(
-                idPasoSiguiente=ejercicio.soluciones[correctas.findIndex(valida)].pasoSiguiente
-            );
+     
+        if (entrada[0]===correcta[0]&& entrada[1]===correcta[1]){
             setEstado(
                 <div className="alert alert-success"> 
                         <p>{ejercicio.validacion}:&nbsp;
-                        <MathComponent tex={ejercicio.result_final[idPasoSiguiente-1]}  display={false}/>
+                        <MathComponent tex={ejercicio.result_final}  display={false}/>
                         </p>
                 </div>
             );
@@ -41,12 +28,9 @@ const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                     </Alert>
                 );
         }
-
-    };
-
+    }
     return (
         <>
-            
             <Row  style={{color: "hotpink", padding: 0}}>
                 <Col xl= "3" style={{padding: 26.5}}>    
                     <MathComponent tex={String.raw`${ejercicio.expresion}`}  display={false}/>
@@ -59,17 +43,17 @@ const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                             type="text" 
                             name="name"
                             className="form-control"
-                            placeholder="Ingrese grupo 1"
+                            placeholder="Ingrese suma"
                             autoComplete= "off"
                             ref= {respuesta1}
                         ></input>
-                        <label htmlFor="label2">)&nbsp;+&nbsp;(</label>
+                        <label htmlFor="label2">)(</label>
                         <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
                             id="label2"
                             type="text" 
                             name="name"
                             className="form-control"
-                            placeholder="Ingrese grupo 2"
+                            placeholder="Ingrese diferencia"
                             autoComplete= "off"
                             ref= {respuesta2}
                         ></input>
@@ -88,9 +72,7 @@ const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                     <Hint ayuda={ejercicio.hint_solicitado}></Hint>
                 </Col> 
             </Row>
-            {estado} 
+            {estado}
         </>
     )
-
 }
-export default FCCpaso1;
