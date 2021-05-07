@@ -17,7 +17,7 @@ const Principal = () =>{
 
     return (
         <>
-            <DC></DC>
+            <TC></TC>
             <br/>
            
         </>

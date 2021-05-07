@@ -1,72 +1,53 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Ejercicio1,Ejercicio2} from './EjerciciosDSC';
 import {MathComponent} from 'mathjax-react';
+import { DSCejemplo } from './ejercicios/DSCejemplo';
+import { Breadcrumb, Accordion,Card } from 'react-bootstrap';
+import { DSCpaso1 } from './ejercicios/DSCpaso1';
+import { DSCpaso2 } from './ejercicios/DSCpaso2';
 //import './DiferenciaCuadrados.css';
 
 
 //react functional component
 const DSC= ()=>{
-    const ejemplo = Ejercicio1;
-    const ejemplo2 = Ejercicio2;
+    //const ejemplo = Ejercicio1;
     const ejercicio = Ejercicio2;
+    const [idSiguientePaso, setIdSiguientePaso] = useState(null);
     return(
         <div>
-            {/*Ejemplo diferencia de cubos */}
-            <hr/>
-            <h2> {ejemplo.titulo} </h2>
-            <p>{ejemplo.pasos[0].paso}</p>
-            <p> Ejemplo:</p>
-            <MathComponent tex={String.raw`${ejemplo.pasos[0].expresion}`} />
-            <p>Solución: </p> 
-            <MathComponent tex={"("+ejemplo.pasos[0].result_final[0]+")^2-("+ejemplo.pasos[0].result_final[1]+")^2"}/>
-            <p>donde {ejemplo.pasos[0].result_final[0]} y {ejemplo.pasos[0].result_final[1]} son los términos al cuadrado</p>
-            
-            <hr/>
-            <p>{ejemplo.pasos[1].paso}</p>
-            <p> Ejemplo:</p>
-            <MathComponent tex={String.raw`${ejemplo.pasos[1].expresion}`} />
-            <p>Solución: </p> 
-            <MathComponent tex={ejemplo.pasos[1].result_final[0]+ejemplo.pasos[1].result_final[1]}/>
-            <p>donde {ejemplo.pasos[0].result_final[0]} y {ejemplo.pasos[0].result_final[1]} son los términos al cuadrado que se ingresan en la suma por diferencia</p>
+            {/*
+           <DSCejemplo ejemplo={ejemplo}></DSCejemplo>
+            */}
+            <Breadcrumb>
+                <Breadcrumb.Item >Factorización</Breadcrumb.Item>
+                <Breadcrumb.Item active>Diferencia y suma de cubos</Breadcrumb.Item>
+            </Breadcrumb>
 
-            {/*Ejemplo suma de cubos */}
-            <hr/>
-            <h2> {ejemplo2.titulo} </h2>
-            <p>{ejemplo2.pasos[0].paso}</p>
-            <p> Ejemplo:</p>
-            <MathComponent tex={String.raw`${ejemplo2.pasos[0].expresion}`} />
-            <p>Solución: </p> 
-            <MathComponent tex={"("+ejemplo2.pasos[0].result_final[0]+")^2-("+ejemplo2.pasos[0].result_final[1]+")^2"}/>
-            <p>donde {ejemplo2.pasos[0].result_final[0]} y {ejemplo2.pasos[0].result_final[1]} son los términos al cuadrado</p>
-            
-            <hr/>
-            <p>{ejemplo2.pasos[1].paso}</p>
-            <p> Ejemplo:</p>
-            <MathComponent tex={String.raw`${ejemplo2.pasos[1].expresion}`} />
-            <p>Solución: </p> 
-            <MathComponent tex={ejemplo2.pasos[1].result_final[0]+ejemplo2.pasos[1].result_final[1]}/>
-            <p>donde {ejemplo2.pasos[0].result_final[0]} y {ejemplo2.pasos[0].result_final[1]} son los términos al cuadrado que se ingresan en la suma por diferencia</p>
+            <h3> {ejercicio.textoProblema} </h3>
+            <center><MathComponent tex={ejercicio.pasos[0].expresion} display={false} /></center>
 
-            {/*Ejercicio */}
-            <hr/>
-            <h2> {ejercicio.titulo} </h2>
-            <p>{ejercicio.pasos[0].paso}</p>
-            <MathComponent tex={String.raw`${ejercicio.pasos[0].expresion}`} />
-            <div className="input-group">
-                <input
-                    type="text" 
-                    name="name"
-                    className="form-control"
-                    placeholder="Ingrese factor común"
-                    autoComplete= "off"
-                ></input>
-
-                <button 
-                    type="submit" 
-                    className="btn btn-outline-success">
-                    Aceptar
-                </button>    
-            </div>
+            <Accordion defaultActiveKey="0">
+                <Card bg="secondary" style={{padding: 0}}>
+                    <Accordion.Toggle as={Card.Header} eventKey="0">
+                        {ejercicio.pasos[0].paso}
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey="0" style={{padding: 1}}>
+                    <Card.Body style={{padding: 0}}>
+                        <DSCpaso1 ejercicio={ejercicio.pasos[0]} setIdSiguientePaso={setIdSiguientePaso} signo={ejercicio.signo}></DSCpaso1>
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+                {idSiguientePaso!=null&&<Card bg="secondary" style={{padding: 0}}>
+                    <Accordion.Toggle as={Card.Header} eventKey="1">
+                        {ejercicio.pasos[idSiguientePaso].paso}
+                    </Accordion.Toggle>
+                    <Accordion.Collapse eventKey="1" style={{padding: 1}}>
+                    <Card.Body style={{padding: 0}}>
+                        <DSCpaso2 ejercicio={ejercicio.pasos[idSiguientePaso]}></DSCpaso2>
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>}
+            </Accordion>
         </div>
     )
 }
