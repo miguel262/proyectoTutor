@@ -11,7 +11,9 @@ const Hint = props => {
         if (props.ayuda[i+1]!= null){
             setI(i+1);
         }
+        
         setE(
+            
             <Alert variant="info">
                 <p>{props.ayuda[i]}</p>
             </Alert> 
@@ -32,7 +34,7 @@ const Hint = props => {
                 >
                     Hint
                 </button>
-                &nbsp; Ayuda con costo de penalización
+                &nbsp; Ayuda 
             </p>
             {e}
         </div>

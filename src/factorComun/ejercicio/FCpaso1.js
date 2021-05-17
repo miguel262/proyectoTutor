@@ -3,7 +3,7 @@ import {MathComponent} from 'mathjax-react';
 import { Col, Row,Alert } from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 
-const FCpaso1 = ({ejercicio}) => {
+const FCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
     
     //hook para obtener un input
     const respuesta = useRef(null);
@@ -11,9 +11,7 @@ const FCpaso1 = ({ejercicio}) => {
     const [estado,setEstado] = useState(null);
     //resultado correcto (hay que validar para todas las entradas posibles)
     const correcta = ejercicio.entrada;
-    const variable = ejercicio.result_variable;
-    console.log(correcta);
-
+    //const variable = ejercicio.result_variable;
     //esta función se ejecuta cuando se oprime el boton aceptar 
     const comparar=()=>{
         //parametro de entrada recibido, replace elimina "espacios" y "*", trabajar todo en minuscula
@@ -37,25 +35,16 @@ const FCpaso1 = ({ejercicio}) => {
                     </p>
                 </div>
             );
+            setPaso1Valido(
+                paso1Valido="Terminado"
+            );
         }
         else{
-            //busca si es un resultado variable
-            if (variable.some(valida)) {
-                //valida que la entrada es correcta
-                setEstado(
-                    <div className="alert alert-warning"> 
-                        <p>{ejercicio.hint_result_var}</p>
-                    </div>
-                );
-            }
-            else{
-                setEstado(
+            
+            setEstado(
                     //error cuando la entrada es incorrecta
-                    <Alert variant="danger">
-                        <p>{ejercicio.error}</p> 
-                    </Alert>
-                );
-            }
+                    <Alert variant="danger">{ejercicio.error} </Alert>
+            );
         }
     };
 
@@ -68,25 +57,26 @@ const FCpaso1 = ({ejercicio}) => {
                 </Col>
                 <Col md="5" xl="4" style={{padding: 0}}> 
                     <div className="input-group">
-                        <input
+                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
                             type="text" 
                             name="name"
                             className="form-control"
                             placeholder="Ingrese factor común"
                             autoComplete= "off"
                             ref= {respuesta}
+                            disabled = {paso1Valido!=null}
                         ></input>
-                        <button 
+                        {paso1Valido==null&&<button 
                             type="submit" 
                             className="btn btn-outline-success"
                             onClick={comparar}
                         >
                             Aceptar
-                        </button>
+                        </button>}
                       </div>        
                 </Col>
                 <Col md = "7" xl="5" style={{padding: 0}}> 
-                    <Hint ayuda={ejercicio.hint_solicitado}></Hint>
+                {paso1Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
                 </Col> 
                 {estado}
             </Row>  

@@ -1,30 +1,28 @@
-import React, {useRef,useState} from 'react';
+import React, {useState,useRef} from 'react'
 import Hint from '../../herramientas/Hint';
 import {Col, Row,Alert } from 'react-bootstrap';
 import {MathComponent} from 'mathjax-react';
 
-export const TCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
+export const TCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
     const respuesta1 = useRef(null);
-    const respuesta2 = useRef(null);
-    const respuesta3 = useRef(null);
     const [estado,setEstado] = useState(null);
-    let idPasoSiguiente = null;
-    const correctas = ejercicio.soluciones.map((elemento)=>elemento.entrada);
+    //let idPasoSiguiente = null;
+    const correcta = ejercicio.soluciones.map((elemento)=>elemento.entrada);
 
     const comparar=()=>{
-        const entrada = [respuesta1.current.value.replace(/[*]| /g, "").toLowerCase(),respuesta2.current.value.replace(/[*]| /g, "").toLowerCase(),respuesta3.current.value.replace(/[*]| /g, "").toLowerCase()];
-        const valida = (element) =>((element[0] === entrada[0]) && (element[1] === entrada[1])&& (element[2] === entrada[2]));
-        if (correctas.some(valida)) {
-            setIdSiguientePaso(
-                idPasoSiguiente=ejercicio.soluciones[correctas.findIndex(valida)].pasoSiguiente
+        const entrada = [respuesta1.current.value.replace(/[*]| /g, "").toLowerCase()];
+        const valida = (element) =>(element[0] === entrada[0]);
+        if (correcta.some(valida)) {
+            setPaso1Valido(
+                paso1Valido=ejercicio.soluciones[correcta.findIndex(valida)].pasoSiguiente
             );
-            setEstado(
+            /*setEstado(
                 <div className="alert alert-success"> 
                         <p>{ejercicio.validacion}:&nbsp;
                         <MathComponent tex={ejercicio.result_final}  display={false}/>
                         </p>
                 </div>
-            );
+            );*/
         }
         else{
                 setEstado(
@@ -34,7 +32,6 @@ export const TCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                     </Alert>
                 );
         }
-
     }
     return (
         <>
@@ -54,42 +51,23 @@ export const TCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                             placeholder="Ingrese a"
                             autoComplete= "off"
                             ref= {respuesta1}
+                            disabled = {paso1Valido!=null}
                         ></input>
-                        <label htmlFor="label2"> , b =</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
-                            id="label2"
-                            type="text" 
-                            name="name"
-                            className="form-control"
-                            placeholder="Ingrese b"
-                            autoComplete= "off"
-                            ref= {respuesta2}
-                        ></input>
-                        <label htmlFor="label3">c = &nbsp;</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
-                            id="label2"
-                            type="text" 
-                            name="name"
-                            className="form-control"
-                            placeholder="Ingrese c"
-                            autoComplete= "off"
-                            ref= {respuesta3}
-                        ></input>
-                        <button 
+                        {paso1Valido==null&&<button 
                             id="label3"
                             type="submit" 
                             className="btn btn-outline-success"
                             onClick={comparar}
                         >
                             Aceptar
-                        </button>
+                        </button>}
                     </div>       
                 </Col>
                 <Col xl="4" style={{padding: 0}}> 
-                    <Hint ayuda={ejercicio.hint_solicitado}></Hint>
+                {paso1Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
                 </Col> 
             </Row>
-            {estado} 
+            {paso1Valido==null&&estado} 
         </>
     )
 }

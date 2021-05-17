@@ -3,35 +3,41 @@ import Hint from '../../herramientas/Hint';
 import {Col, Row,Alert } from 'react-bootstrap';
 import {MathComponent} from 'mathjax-react';
 
-export const DCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
+export const DCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido, paso}) => {
     const respuesta1 = useRef(null);
     const respuesta2 = useRef(null);
     const [estado,setEstado] = useState(null);
-    let idPasoSiguiente = null;
+    //let idPasoSiguiente = null;
     const correctas = ejercicio.soluciones.map((elemento)=>elemento.entrada);
+    
+    
 
     const comparar=()=>{
         const entrada = [respuesta1.current.value.replace(/[*]| /g, "").toLowerCase(),respuesta2.current.value.replace(/[*]| /g, "").toLowerCase()];
         const valida = (element) =>((element[0] === entrada[0]) && (element[1] === entrada[1]));
         if (correctas.some(valida)) {
-            setIdSiguientePaso(
-                idPasoSiguiente=ejercicio.soluciones[correctas.findIndex(valida)].pasoSiguiente
+            setPaso1Valido(
+                paso1Valido=ejercicio.soluciones[correctas.findIndex(valida)].pasoSiguiente
             );
-            setEstado(
+            
+            /*setEstado(
                 <div className="alert alert-success"> 
                         <p>{ejercicio.validacion}:&nbsp;
                         <MathComponent tex={ejercicio.result_final}  display={false}/>
                         </p>
                 </div>
-            );
+            );*/
         }
         else{
-                setEstado(
+                //error cuando la entrada es incorrecta
+        
+            setEstado(
                     //error cuando la entrada es incorrecta
+                    
                     <Alert variant="danger">
                         <p>{ejercicio.error}</p> 
                     </Alert>
-                );
+            );
         }
 
     }
@@ -53,6 +59,7 @@ export const DCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                             placeholder="Ingrese cuadrado 1"
                             autoComplete= "off"
                             ref= {respuesta1}
+                            disabled = {paso1Valido!=null}
                         ></input>
                         <label htmlFor="label2">){<MathComponent tex={String.raw`^2`}  display={false}/>}  - (</label>
                         <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
@@ -63,23 +70,24 @@ export const DCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                             placeholder="Ingrese cuadrado 2"
                             autoComplete= "off"
                             ref= {respuesta2}
+                            disabled = {paso1Valido!=null}
                         ></input>
                         <label htmlFor="label3">){<MathComponent tex={String.raw`^2`}  display={false}/>} &nbsp;</label>
-                        <button 
+                        {paso1Valido==null&&<button 
                             id="label3"
                             type="submit" 
                             className="btn btn-outline-success"
                             onClick={comparar}
                         >
                             Aceptar
-                        </button>
+                        </button>}
                     </div>       
                 </Col>
                 <Col xl="4" style={{padding: 0}}> 
-                    <Hint ayuda={ejercicio.hint_solicitado}></Hint>
+                    {paso1Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
                 </Col> 
             </Row>
-            {estado} 
+            {paso1Valido==null&&estado} 
         </>
     )
 }

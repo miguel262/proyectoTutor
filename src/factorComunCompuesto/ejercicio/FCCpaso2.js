@@ -3,19 +3,19 @@ import {Col, Row, Alert} from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 import {MathComponent} from 'mathjax-react';
 
-const FCCpaso2 = ({ejercicio, setIdSiguientePaso2}) => {
+const FCCpaso2 = ({ejercicio, setPaso2Valido, paso2Valido}) => {
     const respuesta1 = useRef(null);
     const respuesta2 = useRef(null);
     const correcta = ejercicio.soluciones.entrada;
     const [estado,setEstado] = useState(null);
-    let idPasoSiguiente = null;
+    //let idPasoSiguiente = null;
 
     const comparar=()=>{
         const entrada = [respuesta1.current.value.replace(/[*]| /g, "").toLowerCase(),respuesta2.current.value.replace(/[*]| /g, "").toLowerCase()];
 
         if (entrada[0]===correcta[0]&& entrada[1]===correcta[1]) {
-            setIdSiguientePaso2(
-                idPasoSiguiente=ejercicio.soluciones.pasoSiguiente
+            setPaso2Valido(
+                paso2Valido=ejercicio.soluciones.pasoSiguiente
             );
             setEstado(
                 <div className="alert alert-success"> 
@@ -52,6 +52,7 @@ const FCCpaso2 = ({ejercicio, setIdSiguientePaso2}) => {
                         placeholder="Factor común 1"
                         autoComplete= "off"
                         ref= {respuesta1}
+                        disabled = {paso2Valido!=null}
                     ></input>
                     <label htmlFor="label2">){<MathComponent tex={ejercicio.result_final[0][1]}  display={false}/>}&nbsp;+&nbsp;(</label>
                     <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
@@ -62,23 +63,24 @@ const FCCpaso2 = ({ejercicio, setIdSiguientePaso2}) => {
                         placeholder="Factor común 2"
                         autoComplete= "off"
                         ref= {respuesta2}
+                        disabled = {paso2Valido!=null}
                     ></input>
                     <label htmlFor="label3">){<MathComponent tex={ejercicio.result_final[1][1]} display={false}/>} &nbsp;</label>
-                    <button 
+                    {paso2Valido==null&&<button 
                         id="label3"
                         type="submit" 
                         className="btn btn-outline-success"
                         onClick={comparar}
                     >
                         Aceptar
-                    </button>
+                    </button>}
                 </div>       
             </Col>
             <Col xl="4" style={{padding: 0}}>
-                <Hint ayuda={ejercicio.hint_solicitado}></Hint>
+            {paso2Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
             </Col> 
         </Row>
-        {estado}
+        {paso2Valido==null&&estado}
     </>
     )
 }

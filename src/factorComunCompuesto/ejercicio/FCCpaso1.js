@@ -3,11 +3,11 @@ import {MathComponent} from 'mathjax-react';
 import {Col, Row,Alert } from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 
-const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
+const FCCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
     const respuesta1 = useRef(null);
     const respuesta2 = useRef(null);
     const [estado,setEstado] = useState(null);
-    let idPasoSiguiente = null;
+    //let idPasoSiguiente = null;
     const correctas = ejercicio.soluciones.map((elemento)=>elemento.entrada);
 
 
@@ -22,16 +22,16 @@ const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
         //El método some() comprueba si al menos un elemento del array 
         //cumple con la condición implementada por la función proporcionada.
         if (correctas.some(valida)) {
-            setIdSiguientePaso(
-                idPasoSiguiente=ejercicio.soluciones[correctas.findIndex(valida)].pasoSiguiente
+            setPaso1Valido(
+                paso1Valido=ejercicio.soluciones[correctas.findIndex(valida)].pasoSiguiente
             );
-            setEstado(
+            /*setEstado(
                 <div className="alert alert-success"> 
                         <p>{ejercicio.validacion}:&nbsp;
                         <MathComponent tex={ejercicio.result_final[idPasoSiguiente-1]}  display={false}/>
                         </p>
                 </div>
-            );
+            );*/
         }
         else{
                 setEstado(
@@ -62,6 +62,7 @@ const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                             placeholder="Ingrese grupo 1"
                             autoComplete= "off"
                             ref= {respuesta1}
+                            disabled = {paso1Valido!=null}
                         ></input>
                         <label htmlFor="label2">)&nbsp;+&nbsp;(</label>
                         <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
@@ -72,23 +73,24 @@ const FCCpaso1 = ({ejercicio, setIdSiguientePaso}) => {
                             placeholder="Ingrese grupo 2"
                             autoComplete= "off"
                             ref= {respuesta2}
+                            disabled = {paso1Valido!=null}
                         ></input>
                         <label htmlFor="label3">) &nbsp;</label>
-                        <button 
+                        {paso1Valido==null&&<button 
                             id="label3"
                             type="submit" 
                             className="btn btn-outline-success"
                             onClick={comparar}
                         >
                             Aceptar
-                        </button>
+                        </button>}
                     </div>       
                 </Col>
                 <Col xl="4" style={{padding: 0}}> 
-                    <Hint ayuda={ejercicio.hint_solicitado}></Hint>
+                {paso1Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
                 </Col> 
             </Row>
-            {estado} 
+            {paso1Valido==null&&estado} 
         </>
     )
 

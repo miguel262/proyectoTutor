@@ -1,5 +1,5 @@
 //react functional component
-import React from 'react';
+import React, { useState } from 'react';
 import FC from './factorComun/FactorComun';
 import FCC from './factorComunCompuesto/FactorComunCompuesto';
 import DC from './diferenciaCuadrados/DiferenciaCuadrados';
@@ -14,9 +14,9 @@ la idea es definir un enlace que diga para este usuario cargue este ejercicio es
 */
 const Principal = () =>{
 
-
     return (
         <>
+
             <TC></TC>
             <br/>
            
