@@ -10,7 +10,7 @@ export const Ejercicio1 = {
             paso: "Paso 1: identificar el valor de a en la expresión dada",
             //explicacion:"Los valores de a, b y c provienen de una expresión cuadrática de la forma ax^2+bx+c",
             result_final:"a=1",
-            hint_solicitado:["El valor de a es el que acompaña al x^2",
+            hint_solicitado:["hint 1","hint 2",
             "El valor de a es 1"],
             soluciones:[{entrada:["1"],pasoSiguiente:"1"}],
             error:"no es el valor de a",
@@ -68,7 +68,7 @@ export const Ejercicio1 = {
             paso: "Paso 6: Ingresar factorización por trinomios cuadráticos",
             explicacion:"",
             result_final:"(x+2)(x+6)",
-            hint_solicitado:["(x+2)(x+6)"],
+            hint_solicitado:["hint 1","hint 2","(x+2)(x+6)"],
             entrada:[["x+2","x+6"],["x+6","x+2"]],
             error:"error en la factorización",
             validacion:"Haz factorizado por trinomios cuadráticos correctamente"

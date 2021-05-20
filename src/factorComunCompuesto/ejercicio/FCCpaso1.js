@@ -3,7 +3,7 @@ import {MathComponent} from 'mathjax-react';
 import {Col, Row,Alert } from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 
-const FCCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
+const FCCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido, hintsTerminado, setHintsTerminado}) => {
     const respuesta1 = useRef(null);
     const respuesta2 = useRef(null);
     const [estado,setEstado] = useState(null);
@@ -52,9 +52,9 @@ const FCCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
                     <MathComponent tex={String.raw`${ejercicio.expresion}`}  display={false}/>
                 </Col>
                 <Col xl= "5" style={{padding: 0}}> 
-                    <div className="input-group">
-                        <label htmlFor="label1">(</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
+                {hintsTerminado===null&&<div className="input-group">
+                    <label htmlFor="label1">(</label>
+                            <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
                             id="label1"
                             type="text" 
                             name="name"
@@ -65,7 +65,7 @@ const FCCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
                             disabled = {paso1Valido!=null}
                         ></input>
                         <label htmlFor="label2">)&nbsp;+&nbsp;(</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
+                            <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
                             id="label2"
                             type="text" 
                             name="name"
@@ -84,13 +84,15 @@ const FCCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
                         >
                             Aceptar
                         </button>}
-                    </div>       
+                        
+                    </div>}
+                    {hintsTerminado!==null&& <div> <p>{ejercicio.hint_solicitado[hintsTerminado]}</p> </div>}       
                 </Col>
                 <Col xl="4" style={{padding: 0}}> 
-                {paso1Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
+                {paso1Valido==null&&hintsTerminado===null&&<Hint ejercicio={ejercicio.hint_solicitado} setHintsTerminado ={setHintsTerminado}></Hint>}
                 </Col> 
             </Row>
-            {paso1Valido==null&&estado} 
+            {paso1Valido==null&&hintsTerminado===null&&estado} 
         </>
     )
 

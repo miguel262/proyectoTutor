@@ -1,43 +1,46 @@
-import { Alert } from 'react-bootstrap';
+import { Alert, OverlayTrigger, Popover } from 'react-bootstrap';
 import React, {useState } from 'react';
 
-const Hint = props => {
+const Hint = ({ejercicio,setHintsTerminado}) => {
 
-    const [e,setE] = useState(null);
+    const [hint,setHint] = useState(null);
     
     const [i,setI] = useState(0);
 
     const ayuda = () =>{
-        if (props.ayuda[i+1]!= null){
+        if (ejercicio[i+1]!= null){
             setI(i+1);
         }
+        else{
+            setHintsTerminado(
+                i
+            )
+        }
         
-        setE(
-            
-            <Alert variant="info">
-                <p>{props.ayuda[i]}</p>
-            </Alert> 
+        setHint(
+            <Popover   style={{ padding: 0}}>
+                <Popover.Content style={{ padding: 0}}>
+                    <Alert variant="info">
+                        <p>{ejercicio[i]}</p>
+                    </Alert>
+                </Popover.Content>
+            </Popover>
         )
-        console.log(i);
-        //var incognita = "(3 * x) / ( 4 * y )";
-        //var c='*';
-        //console.log(incognita.replace(/[*]| /g, ""));
+         
     }
 
     return(
         <div>
             <p>
-                <button 
-                    type="submit" 
-                    className="btn btn-outline-info"
-                    onClick={ayuda}
-                >
-                    Hint
-                </button>
-                &nbsp; Ayuda 
+           
+                <OverlayTrigger trigger="click" rootClose placement="bottom" overlay={hint} >
+                        <button id="boton" type="submit" className="btn btn-outline-info"  onClick={ayuda}>Hint</button>
+                </OverlayTrigger> 
+                &nbsp; Ayuda
+                
             </p>
-            {e}
         </div>
+        
     );
 
 }

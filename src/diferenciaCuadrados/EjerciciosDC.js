@@ -22,7 +22,7 @@ export const Ejercicio1 = {
             paso: "Paso 2: ingresar suma por diferencia",
             explicacion:"",
             result_final:"(3x+1)(3x-1)",
-            hint_solicitado:["Primer paréntesis ingresar suma", "Segundo paréntesis ingresar resta","(3x+1)(3x-1)"],
+            hint_solicitado:["Primer paréntesis ingresar suma", "Segundo paréntesis ingresar resta","Factorización por suma y diferencia: (3x+1)(3x-1)"],
             entrada:["3x+1","3x-1"],
             error:"suma por diferencia mal ingresado",
             validacion:"Haz factorizado por diferencia de cuadradros"
@@ -52,7 +52,7 @@ export const Ejercicio2 = {
             paso: "Paso 2: ingresar suma por diferencia",
             explicacion:"",
             result_final:"(x+y)(x-y)",
-            hint_solicitado:["Primer paréntesis ingresar suma", "Segundo paréntesis ingresar resta", "(x+y)(x-y)"],
+            hint_solicitado:["Primer paréntesis ingresar suma", "Segundo paréntesis ingresar resta", "Factorización por suma y diferencia: (x+y)(x-y)"],
             entrada:["x+y","x-y"],
             error:"suma por diferencia mal ingresado",
             validacion:"Haz factorizado por diferencia de cuadradros"
@@ -85,7 +85,7 @@ export const Ejercicio3 = {
             paso: "Paso 2: ingresar suma por diferencia",
             explicacion:"",
             result_final:"(2xy^2+4xy)(2xy^2-4xy)",
-            hint_solicitado:["los grupos de sumandos son los que estan dentro de los paréntesis"],
+            hint_solicitado:["Primer paréntesis ingresar suma", "Segundo paréntesis ingresar resta", "factorización por suma y diferencia:"],
             entrada:["(2xy^2+4xy)","(2xy^2-4xy)"],
             error:"suma por diferencia mal ingresado",
             validacion:"Haz encontrado la diferencia de cuadradros"

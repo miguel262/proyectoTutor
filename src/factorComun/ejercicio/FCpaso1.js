@@ -3,7 +3,7 @@ import {MathComponent} from 'mathjax-react';
 import { Col, Row,Alert } from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 
-const FCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
+const FCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido, hintsTerminado, setHintsTerminado}) => {
     
     //hook para obtener un input
     const respuesta = useRef(null);
@@ -12,7 +12,12 @@ const FCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
     //resultado correcto (hay que validar para todas las entradas posibles)
     const correcta = ejercicio.entrada;
     //const variable = ejercicio.result_variable;
-    //esta función se ejecuta cuando se oprime el boton aceptar 
+    //esta función se ejecuta cuando se oprime el boton aceptar
+  
+    //hint
+    //const [hintsTerminado,setHintsTerminado] = useState(null);
+
+
     const comparar=()=>{
         //parametro de entrada recibido, replace elimina "espacios" y "*", trabajar todo en minuscula
         const entrada = respuesta.current.value.replace(/[*]| /g, "").toLowerCase();
@@ -56,8 +61,8 @@ const FCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
                     <MathComponent tex={String.raw`${ejercicio.expresion}`}  display={false}/>
                 </Col>
                 <Col md="5" xl="4" style={{padding: 0}}> 
-                    <div className="input-group">
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
+                <div className="input-group">
+                {hintsTerminado===null&&<input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
                             type="text" 
                             name="name"
                             className="form-control"
@@ -65,21 +70,23 @@ const FCpaso1 = ({ejercicio, setPaso1Valido, paso1Valido}) => {
                             autoComplete= "off"
                             ref= {respuesta}
                             disabled = {paso1Valido!=null}
-                        ></input>
-                        {paso1Valido==null&&<button 
+                        ></input>}
+                        {(paso1Valido===null)&&hintsTerminado===null&&<button 
                             type="submit" 
                             className="btn btn-outline-success"
                             onClick={comparar}
                         >
                             Aceptar
                         </button>}
-                      </div>        
+                        {hintsTerminado!==null&& <p>{ejercicio.hint_solicitado[hintsTerminado]}</p>}
+                      </div>
+                             
                 </Col>
                 <Col md = "7" xl="5" style={{padding: 0}}> 
-                {paso1Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
+                {paso1Valido===null&&hintsTerminado===null&&<Hint ejercicio={ejercicio.hint_solicitado} setHintsTerminado ={setHintsTerminado} ></Hint>}
                 </Col> 
-                {estado}
-            </Row>  
+                {hintsTerminado===null&&estado}
+            </Row>
            
         </>
     )

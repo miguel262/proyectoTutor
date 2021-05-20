@@ -3,7 +3,7 @@ import {Col, Row, Alert} from 'react-bootstrap';
 import Hint from '../../herramientas/Hint';
 import {MathComponent} from 'mathjax-react';
 
-const FCCpaso2 = ({ejercicio, setPaso2Valido, paso2Valido}) => {
+const FCCpaso2 = ({ejercicio, setPaso2Valido, paso2Valido, hintsTerminado, setHintsTerminado}) => {
     const respuesta1 = useRef(null);
     const respuesta2 = useRef(null);
     const correcta = ejercicio.soluciones.entrada;
@@ -42,7 +42,7 @@ const FCCpaso2 = ({ejercicio, setPaso2Valido, paso2Valido}) => {
                 <MathComponent tex={ejercicio.expresion}  display={false}/>
             </Col>
             <Col xl= "5" style={{padding: 0}}> 
-                <div className="input-group">
+            {hintsTerminado===null&&<div className="input-group">
                     <label htmlFor="label1">(</label>
                     <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
                         id="label1"
@@ -74,13 +74,15 @@ const FCCpaso2 = ({ejercicio, setPaso2Valido, paso2Valido}) => {
                     >
                         Aceptar
                     </button>}
-                </div>       
+                </div>}
+                {hintsTerminado!==null&& <div> <p>{ejercicio.hint_solicitado[hintsTerminado]}</p> </div>
+                }        
             </Col>
             <Col xl="4" style={{padding: 0}}>
-            {paso2Valido==null&&<Hint ayuda={ejercicio.hint_solicitado}></Hint>}
+            {paso2Valido==null&&hintsTerminado===null&&<Hint ejercicio={ejercicio.hint_solicitado} setHintsTerminado ={setHintsTerminado}></Hint>}
             </Col> 
         </Row>
-        {paso2Valido==null&&estado}
+        {paso2Valido==null&&hintsTerminado===null&&estado}
     </>
     )
 }

@@ -67,7 +67,7 @@ export const Ejercicio1 = {
             //result_variable:[],
             //hint_result_var:"",
             result_final:"(a+b)(x+y)",
-            hint_solicitado:["ver variable que se repite en ambos sumandos","el factor común de la expresión es: x + y"],
+            hint_solicitado:["ver variable que se repite en ambos sumandos","el factor común es a + b"],
             entrada:["a+b"],
             error:"factor común incorrecto, ingrese el factor común correspondiente a la expresión dada",
             validacion:"Haz encontrado el factor común"
